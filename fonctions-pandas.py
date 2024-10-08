@@ -173,3 +173,83 @@ print()
 print("28. QUERY() Example:")
 print(data.query('C > 3'))  # Sélectionne les lignes où 'C' > 3
 print()
+
+# 29. RESAMPLE - Redimensionner les données temporelles
+print("29. RESAMPLE() Example:")
+date_rng = pd.date_range(start='1/1/2020', end='1/08/2020', freq='D')
+df_time = pd.DataFrame(date_rng, columns=['date'])
+df_time['data'] = np.random.randint(0, 100, size=(len(date_rng)))
+df_time.set_index('date', inplace=True)
+print(df_time.resample('2D').sum())  # Regrouper les données tous les 2 jours
+print()
+
+# 30. PIVOT - Transformer des colonnes en lignes
+print("30. PIVOT() Example:")
+df_pivot = pd.DataFrame({
+    'A': ['foo', 'bar', 'baz'],
+    'B': ['one', 'one', 'two'],
+    'C': [1, 2, 3]
+})
+print(df_pivot.pivot(index='A', columns='B', values='C'))  # Crée un pivot
+print()
+
+# 31. MELT - Remodeler un DataFrame long
+print("31. MELT() Example:")
+df_melt = pd.DataFrame({
+    'A': ['foo', 'bar', 'baz'],
+    'B': [1, 2, 3],
+    'C': [4, 5, 6]
+})
+print(pd.melt(df_melt, id_vars=['A'], value_vars=['B', 'C']))  # Passe de large à long
+print()
+
+# 32. JOIN - Joindre deux DataFrames par index
+print("32. JOIN() Example:")
+df3 = pd.DataFrame({'A': ['foo', 'bar'], 'B': [1, 2]})
+df4 = pd.DataFrame({'C': ['baz', 'qux'], 'D': [3, 4]})
+print(df3.join(df4))  # Joindre df3 et df4 par index
+print()
+
+# 33. ISNULL - Détecter les valeurs manquantes
+print("33. ISNULL() Example:")
+print(data_with_nan.isnull())  # Détecte les NaN dans le DataFrame
+print()
+
+# 34. MEMORY USAGE - Mesurer l'usage de mémoire
+print("34. MEMORY_USAGE() Example:")
+print(data.memory_usage(deep=True))  # Affiche la mémoire utilisée par le DataFrame
+print()
+
+# 35. APPLYMAP - Appliquer une fonction à chaque élément du DataFrame
+print("35. APPLYMAP() Example:")
+print(data.applymap(lambda x: x*2))  # Multiplie chaque élément par 2
+print()
+
+# 36. STRING OPERATIONS - Opérations sur des chaînes
+print("36. STRING OPERATIONS() Example:")
+df_str = pd.DataFrame({'A': [' foo ', ' BAR', ' baz '], 'B': [' hello ', ' world', 'Python ']})
+print(df_str['A'].str.strip())  # Supprime les espaces autour des chaînes
+print(df_str['A'].str.upper())  # Convertit en majuscule
+print(df_str['A'].str.replace(' ', '_'))  # Remplace les espaces par des underscores
+print()
+
+# 37. SAMPLE - Prendre un échantillon aléatoire
+print("37. SAMPLE() Example:")
+print(data.sample(n=3))  # Prend un échantillon de 3 lignes aléatoires
+print()
+
+# 38. NLARGEST - Sélectionner les n plus grandes valeurs
+print("38. NLARGEST() Example:")
+print(data.nlargest(3, 'C'))  # Sélectionne les 3 plus grandes valeurs de 'C'
+print()
+
+# 39. NSMALLEST - Sélectionner les n plus petites valeurs
+print("39. NSMALLEST() Example:")
+print(data.nsmallest(3, 'D'))  # Sélectionne les 3 plus petites valeurs de 'D'
+print()
+
+# 40. CORR - Calculer la corrélation entre colonnes
+print("40. CORR() Example:")
+print(data.corr())  # Corrélation entre les colonnes numériques
+print()
+
